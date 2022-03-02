@@ -1,14 +1,16 @@
-const FeedbackStats = (props) => {
+import { useContext } from "react"
+import FeedbackContext from "../context/FeedbackContext"
+const FeedbackStats = () => {
   //Calculate ratings avg
 
-  let average = props.feedback.reduce((acc, cur)=> {
-    return acc + cur.rating
-  }, 0) / Math.floor(props.feedback.length)
+  const {feedback} = useContext(FeedbackContext)
 
-  console.log(average)
+  let average = feedback.reduce((acc, cur)=> {
+    return (acc + cur.rating)
+  }, 0) / feedback.length
   return (
     <div className="feedback-stats">
-      <h4>{props.feedback.length} Reviews </h4>
+      <h4>{feedback.length} Reviews </h4>
       <h4>Average rating: {average}</h4>
       </div>
   )
